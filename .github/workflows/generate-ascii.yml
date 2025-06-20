@@ -3,58 +3,58 @@ name: Generate ASCII Artwork
 on:  push
 
 jobs:
-    ascii-job:
-        runs-on: ubuntu-latest
-        steps:
-        - name: checkout repo
-          uses: actions/checkout@v4
+    # ascii-job:
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #     - name: checkout repo
+    #       uses: actions/checkout@v4
 
-        - name: execute shell script
-          run: |
-            chmod +x ascii-script.sh
-            ./ascii-script.sh
+    #     - name: execute shell script
+    #       run: |
+    #         chmod +x ascii-script.sh
+    #         ./ascii-script.sh
 
-        - name: List repo files
-          run: ls -ltra
+    #     - name: List repo files
+    #       run: ls -ltra
 
-#   build_job_1:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Install Cowsay Program
-#       run: sudo apt-get install cowsay -y
+  build_job_1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Cowsay Program
+      run: sudo apt-get install cowsay -y
 
-#     - name: Execute Cowsay CMD
-#       run: cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" >> dragon.txt
+    - name: Execute Cowsay CMD
+      run: cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" >> dragon.txt
     
-#     - name: Upload Dragon text file
-#       uses: actions/upload-artifact@v3
-#       with:
-#         name: dragon-text-file
-#         path: dragon.txt
+    - name: Upload Dragon text file
+      uses: actions/upload-artifact@v3
+      with:
+        name: dragon-text-file
+        path: dragon.txt
  
-#   test_job_2:
-#     needs: build_job_1
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Download Dragon text file
-#       uses: actions/download-artifact@v3
-#       with:
-#         name: dragon-text-file
+  test_job_2:
+    needs: build_job_1
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download Dragon text file
+      uses: actions/download-artifact@v3
+      with:
+        name: dragon-text-file
       
-#     - name: Test File Exists
-#       run: grep -i "dragon" dragon.txt
+    - name: Test File Exists
+      run: grep -i "dragon" dragon.txt
 
-#   deploy_job_3:
-#     needs: [test_job_2]
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Download Dragon text file
-#       uses: actions/download-artifact@v3
-#       with:
-#         name: dragon-text-file
+  deploy_job_3:
+    needs: [test_job_2]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download Dragon text file
+      uses: actions/download-artifact@v3
+      with:
+        name: dragon-text-file
         
-#     - name: Read File
-#       run: cat dragon.txt
+    - name: Read File
+      run: cat dragon.txt
        
-#     - name: Deploy
-#       run: echo Deploying ... .. .
+    - name: Deploy
+      run: echo Deploying ... .. .
